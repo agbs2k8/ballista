@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ballista -- Available Rounds for {{ rifle.name }}
+{%  endblock %}
+
+{% block content %}
+    <article>
+        <header>
+             <h1>Available Rounds for {{ rifle.name }}</h1>
+
+            {% if caliber.rounds.count() > 0 %}
+                {% with rifle_rounds=caliber.rounds %}
+                    {% include "rifle_round_list.html" %}
+                {% endwith %}
+                <br>
+                <a href="#">Add Round</a>
+            {% else %}
+                <a href="#">Add Round</a>
+            {% endif %}
+
+        </header>
+
+    </article>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

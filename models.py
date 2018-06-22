@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from ballista import db
-# TODO: class Round: id, name, caliber
+
 # TODO: Rifle-Round Muzzle Velocity
 # TODO: class Target
 
@@ -11,16 +11,46 @@ from ballista import db
 class Caliber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     caliber_name = db.Column(db.String(20), nullable=False)
+    rounds = db.relationship('Round', backref='caliber', lazy='dynamic')
 
     def __repr__(self):
         return f"<CALIBER ID {self.id}: {self.caliber_name}>"
+
+
+class Bullettype(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    bullet_type = db.Column(db.String(10), nullable=False)
+    rounds = db.relationship('Round', backref='bulletType')
+
+    def __repr__(self):
+        return f"<BULLET TYPE ID: {self.id}: {self.bullet_type}>"
+
+
+class Round(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    round_name = db.Column(db.String(20), nullable=False)
+    bullet_grains = db.Column(db.Float, nullable=False)
+
+    # Foreign Keys
+    bullet_type_id = db.Column(db.Integer, db.ForeignKey('bullettype.id'), nullable=False)
+    caliber_id = db.Column(db.Integer, db.ForeignKey('caliber.id'), nullable=False)
+
+    round_caliber = db.relationship('Caliber')
+    round_bullet_type = db.relationship('Bullettype')
+
+    def __repr__(self):
+        return f"<ROUND ID: {self.id}: {self.round_name}>"
 
 
 class Rifle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     barrel_length = db.Column(db.Float)
+    sight_height = db.Column(db.Float)
+    magnification_power = db.Column(db.Integer)
+    adjustment_type = db.Column(db.String(3), nullable=True)
     created_dt = db.Column(db.DateTime, default=datetime.now())
+
     # Foreign Keys
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     caliber_id = db.Column(db.Integer, db.ForeignKey('caliber.id'), nullable=False)

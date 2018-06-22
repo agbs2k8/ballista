@@ -1,0 +1,19 @@
+<div class="rifle_round">
+    <div class="header">
+        <h3 class="description">
+            {{ rifle_round.round_name }}
+        </h3>
+    </div>
+    <div class="info">
+        <span class="rifle_properties">
+            Caliber: {{ rifle_round.round_caliber.caliber_name }} <br>
+            Weight(Grains): {{ rifle_round.bullet_grains }} <br>
+            Bullet Type: {{ rifle_round.round_bullet_type.bullet_type }} <br>
+        </span>
+        <a href="{{ url_for('set_round', round_id=rifle_round.id) }}">Set as current Round.</a>
+        <br>
+    </div>
+</div>
+
+
+

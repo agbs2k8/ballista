@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Ballista -- Rifles for user {{ user.username }}
+Ballista -- Rifles for {{ user.username }}
 {%  endblock %}
 
 {% block content %}
@@ -13,6 +13,8 @@ Ballista -- Rifles for user {{ user.username }}
                 {% with rifles=user.rifles %}
                     {% include "rifle_list.html" %}
                 {% endwith %}
+                <br>
+                <a href="{{ url_for('add_rifle') }}">Add Rifle</a>
             {% else %}
                 <a href="{{ url_for('add_rifle') }}">Add Rifle</a>
             {% endif %}

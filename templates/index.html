@@ -6,8 +6,8 @@ Ballista -- Welcome
 {% block content %}
 <article>
     {% if current_user.is_authenticated %}
-        Selected Rifle: {{ current_user.selected_rifle }} <br>
-        Selected Round: {{ current_user.selected_round }} <br>
+        Selected Rifle: {{ cur_rifle.name }}<br>
+        Selected Round: {{ cur_round.round_name }}<br>
     {% else %}
     <header>
         <h1>Please Login</h1>
