@@ -1,0 +1,21 @@
+{%  extends "base.html" %}
+{% block title %}
+Ballista -- Welcome
+{% endblock %}
+
+{% block content %}
+<article>
+    {% if current_user.is_authenticated %}
+        Selected Rifle: {{ current_user.selected_rifle }} <br>
+        Selected Round: {{ current_user.selected_round }} <br>
+    {% else %}
+    <header>
+        <h1>Please Login</h1>
+        <p>No action can be taken until you login.</p>
+    </header>
+    {% endif %}
+</article>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Ballista -- Add Rifle
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Add a new Rifle</h1>
+    <form action="", method="post">
+        {{ form.hidden_tag() }}
+        <table>
+            {{ render_field(form.name) }}
+            {{ render_field(form.caliber) }}
+            {{ render_field(form.barrel_length) }}
+            <tr class="submit">
+                <td></td>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+</section>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

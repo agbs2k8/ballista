@@ -1,0 +1,26 @@
+<div class="rifle">
+    <div class="header">
+        <h3 class="description">
+            {{ rifle.name }}
+        </h3>
+    </div>
+    <div class="info">
+        <span class="rifle_properties">
+            Caliber: {{ rifle.caliber.caliber_name }} <br>
+            Barrel Length: {{ rifle.barrel_length }} <br>
+            Created: {{ rifle.created_dt }} <br>
+        </span>
+        Added by <a href="{{ url_for('user', username=rifle.user.username) }}">
+            {{ rifle.user.username }}
+        </a>
+        <!--{ if current_user == bookmark.user and not nolinks %}
+            <span class="editlinks">
+                <a href="{ url_for('edit_bookmark', bookmark_id=bookmark.id) }}">edit</a>
+                <a href="{ url_for('delete_bookmark', bookmark_id=bookmark.id) }}">delete</a>
+            </span>
+        { endif }-->
+    </div>
+</div>
+
+
+
